@@ -1,0 +1,228 @@
+:root {
+  --bg-color: hsl(49 37% 94%);
+  --typewriterSpeed: 6s;
+  --typewriterCharacters: 24;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: #ffffff;
+}
+
+.moving {
+  margin: auto;
+  font-family: "Source Sans Pro", sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.name {
+  font-size: clamp(1rem, 3vw + 1rem, 4rem);
+  position: relative;
+  font-family: "Source Code Pro", monospace;
+  width: max-content;
+}
+
+.name::before,
+.name::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.name::before {
+  background: #fff;
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterCharacters)) 1s forwards;
+}
+
+.name::after {
+  width: 0.125em;
+  background: black;
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterCharacters)) 1s forwards, blink 750ms steps(var(--typewriterCharacters)) infinite;
+}
+
+.subtitle {
+  color: #000;
+  font-size: 2rem;
+  font-weight: normal;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 2s) forwards;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  to {
+    background: transparent;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .moving {
+    grid-template-columns: 2fr;
+    padding-left: 7px;
+  }
+  .name {
+    font-size: 22px;
+  }
+}
+
+
+.box {
+  transform: translateX(400%);
+  transition: transform 0.4s ease;
+}
+
+.show {
+
+}
+
+.fade {
+  animation: fade linear;
+  animation-timeline: view();
+  animation-range: entry 50% cover 50%;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pde{
+  animation: fade linear;
+  animation-timeline: view();
+  animation-range: entry 20% cover 60%;   
+}
+@keyframes fade{
+from{
+  opacity: 0;
+}
+to{
+  opacity: 1;
+}
+}
+.fde{
+  font-family: 'Poppins', sans-serif;
+  animation: fade linear;
+  animation-timeline: view();
+  animation-range: entry 15% cover 30%;   
+}
+
+body, h1, p, a, .name, .subtitle, .pde {
+  color: black !important;
+}
+
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid black;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, background 0.2s ease;
+  z-index: 9999;
+}
+.custom-cursor.click {
+  transform: translate(-50%, -50%) scale(1.4);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.ripple {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1);
+  animation: rippleAnim 0.4s ease-out forwards;
+  z-index: 9998;
+}
+@keyframes rippleAnim {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+}
+
+
+@keyframes fadeInPop {
+  0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-pop {
+  animation: fadeInPop 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+
+.custom-volume {
+  appearance: none;
+  width: 100%;
+  height: 2px;             
+  background: #ccc;        
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.custom-volume:hover {
+  background: #999;         
+}
+
+
+.custom-volume::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: black;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s;
+}
+.custom-volume::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #333;
+}
+
+.custom-volume::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: black;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s;
+}
+.custom-volume::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  background: #333;
+}
